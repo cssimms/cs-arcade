@@ -6,6 +6,8 @@ import Button from "@mui/material/Button";
 import AccessAlarmIcon from "@mui/icons-material/AccessAlarm";
 import Paper from "@mui/material/Paper";
 
+import AsteroidsWrapper from "./AsteroidsWrapper";
+
 // TODO - importing asteroids doens't make sense right now bc the game isn't written in react...
 // in asteroids, all we need is a root element with id "asteroids-container", and the imported js should be able to attached to that... not sure exactly how it will work yet
 // import Asteroids from "asteroids";
@@ -25,7 +27,7 @@ function App() {
           <AccessAlarmIcon />
         </Typography>
       </Box>
-
+      <AsteroidsWrapper />
       <Grid container spacing={2}>
         <Grid item>
           <Paper
