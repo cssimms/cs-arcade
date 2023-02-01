@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
@@ -13,12 +13,17 @@ import AsteroidsWrapper from "./AsteroidsWrapper";
 // import Asteroids from "asteroids";
 
 function App() {
+  const [showAsteroids, setShowAsteroids] = useState(false);
+  const renderAsteroids = () => {
+    if (showAsteroids) {
+      return <AsteroidsWrapper />;
+    }
+    return "";
+  };
+
   return (
     <Box sx={{ width: "100%", maxWidth: 500 }}>
       <Typography variant="h2">Here is your header</Typography>
-      <Button vatiant="contained" color="primary">
-        click ma button
-      </Button>
       <br />
       <Box>
         <Typography variant="p">
@@ -27,7 +32,6 @@ function App() {
           <AccessAlarmIcon />
         </Typography>
       </Box>
-      <AsteroidsWrapper />
       <Grid container spacing={2}>
         <Grid item>
           <Paper
@@ -38,7 +42,15 @@ function App() {
               backgroundColor: (theme) =>
                 theme.palette.mode === "dark" ? "#1A2027" : "#fff",
             }}
-          />
+          >
+            <Button
+              onClick={() => setShowAsteroids(!showAsteroids)}
+              vatiant="contained"
+              color="primary"
+            >
+              Load Asteroids!
+            </Button>
+          </Paper>
         </Grid>
         <Grid item>
           <Paper
@@ -71,6 +83,7 @@ function App() {
           />
         </Grid>
       </Grid>
+      {renderAsteroids()}
     </Box>
   );
 }
