@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
@@ -6,17 +6,29 @@ import Button from "@mui/material/Button";
 import AccessAlarmIcon from "@mui/icons-material/AccessAlarm";
 import Paper from "@mui/material/Paper";
 
+import GameWrapper from "./GameWrapper";
+
 // TODO - importing asteroids doens't make sense right now bc the game isn't written in react...
 // in asteroids, all we need is a root element with id "asteroids-container", and the imported js should be able to attached to that... not sure exactly how it will work yet
 // import Asteroids from "asteroids";
 
 function App() {
+  const [showAsteroids, setShowAsteroids] = useState(false);
+  const renderAsteroids = () => {
+    if (showAsteroids) {
+      return (
+        <GameWrapper
+          gameName="asteroids"
+          assetUrl="http://localhost:9000/bundle.js"
+        />
+      );
+    }
+    return "";
+  };
+
   return (
     <Box sx={{ width: "100%", maxWidth: 500 }}>
       <Typography variant="h2">Here is your header</Typography>
-      <Button vatiant="contained" color="primary">
-        click ma button
-      </Button>
       <br />
       <Box>
         <Typography variant="p">
@@ -25,7 +37,6 @@ function App() {
           <AccessAlarmIcon />
         </Typography>
       </Box>
-
       <Grid container spacing={2}>
         <Grid item>
           <Paper
@@ -36,7 +47,15 @@ function App() {
               backgroundColor: (theme) =>
                 theme.palette.mode === "dark" ? "#1A2027" : "#fff",
             }}
-          />
+          >
+            <Button
+              onClick={() => setShowAsteroids(!showAsteroids)}
+              vatiant="contained"
+              color="primary"
+            >
+              Load Asteroids!
+            </Button>
+          </Paper>
         </Grid>
         <Grid item>
           <Paper
@@ -69,6 +88,7 @@ function App() {
           />
         </Grid>
       </Grid>
+      {renderAsteroids()}
     </Box>
   );
 }
