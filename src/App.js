@@ -6,7 +6,7 @@ import Button from "@mui/material/Button";
 import AccessAlarmIcon from "@mui/icons-material/AccessAlarm";
 import Paper from "@mui/material/Paper";
 
-import AsteroidsWrapper from "./AsteroidsWrapper";
+import GameWrapper from "./GameWrapper";
 
 // TODO - importing asteroids doens't make sense right now bc the game isn't written in react...
 // in asteroids, all we need is a root element with id "asteroids-container", and the imported js should be able to attached to that... not sure exactly how it will work yet
@@ -16,7 +16,12 @@ function App() {
   const [showAsteroids, setShowAsteroids] = useState(false);
   const renderAsteroids = () => {
     if (showAsteroids) {
-      return <AsteroidsWrapper />;
+      return (
+        <GameWrapper
+          gameName="asteroids"
+          assetUrl="http://localhost:9000/bundle.js"
+        />
+      );
     }
     return "";
   };
